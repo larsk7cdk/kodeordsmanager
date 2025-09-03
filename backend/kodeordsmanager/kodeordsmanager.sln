@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8D4563C7-D0AC-4D59-82D9-0571586CA83F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{EF9CCDA8-BAC9-4BE7-9DE8-BCB248737B1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.api", "src\kodeordsmanager.api\kodeordsmanager.api.csproj", "{387B5C10-AD22-4A38-94EA-9F4FDE31720E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DDE32F3A-ECAA-4D07-B43E-08B37C0EFB5C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{842C1EFC-1A2C-4792-9302-660116127BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.domain", "src\kodeordsmanager.domain\kodeordsmanager.domain.csproj", "{2759C6E0-6616-4C31-B884-0E0A92233912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.application", "src\kodeordsmanager.application\kodeordsmanager.application.csproj", "{21858A95-307B-41BC-B3CA-5869AFCC09DF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.infrastructure", "src\kodeordsmanager.infrastructure\kodeordsmanager.infrastructure.csproj", "{41C5401A-8C54-4387-BEE8-6FB3A4495341}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.persistence", "src\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj", "{7B16E91B-FE5A-483E-89F2-F7070CC99765}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{387B5C10-AD22-4A38-94EA-9F4FDE31720E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387B5C10-AD22-4A38-94EA-9F4FDE31720E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387B5C10-AD22-4A38-94EA-9F4FDE31720E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387B5C10-AD22-4A38-94EA-9F4FDE31720E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2759C6E0-6616-4C31-B884-0E0A92233912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2759C6E0-6616-4C31-B884-0E0A92233912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2759C6E0-6616-4C31-B884-0E0A92233912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2759C6E0-6616-4C31-B884-0E0A92233912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21858A95-307B-41BC-B3CA-5869AFCC09DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21858A95-307B-41BC-B3CA-5869AFCC09DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21858A95-307B-41BC-B3CA-5869AFCC09DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21858A95-307B-41BC-B3CA-5869AFCC09DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41C5401A-8C54-4387-BEE8-6FB3A4495341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C5401A-8C54-4387-BEE8-6FB3A4495341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C5401A-8C54-4387-BEE8-6FB3A4495341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C5401A-8C54-4387-BEE8-6FB3A4495341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF9CCDA8-BAC9-4BE7-9DE8-BCB248737B1C} = {8D4563C7-D0AC-4D59-82D9-0571586CA83F}
+		{387B5C10-AD22-4A38-94EA-9F4FDE31720E} = {EF9CCDA8-BAC9-4BE7-9DE8-BCB248737B1C}
+		{842C1EFC-1A2C-4792-9302-660116127BEF} = {8D4563C7-D0AC-4D59-82D9-0571586CA83F}
+		{2759C6E0-6616-4C31-B884-0E0A92233912} = {842C1EFC-1A2C-4792-9302-660116127BEF}
+		{21858A95-307B-41BC-B3CA-5869AFCC09DF} = {842C1EFC-1A2C-4792-9302-660116127BEF}
+		{4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0} = {8D4563C7-D0AC-4D59-82D9-0571586CA83F}
+		{41C5401A-8C54-4387-BEE8-6FB3A4495341} = {4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0}
+		{7B16E91B-FE5A-483E-89F2-F7070CC99765} = {4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0}
+	EndGlobalSection
+EndGlobal

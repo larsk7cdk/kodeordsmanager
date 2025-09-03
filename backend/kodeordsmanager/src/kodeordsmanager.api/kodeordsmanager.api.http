@@ -1,0 +1,6 @@
+@kodeordsmanager.api_HostAddress = http://localhost:5218
+
+GET {{kodeordsmanager.api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
