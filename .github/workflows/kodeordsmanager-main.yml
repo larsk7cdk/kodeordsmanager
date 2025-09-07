@@ -12,17 +12,7 @@ concurrency:
   group: deploy-${{ github.ref }}
   cancel-in-progress: true
 
-  workflow_dispatch:
-
-concurrency:
-  group: deploy-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-
-
-
-
   build:
     name: Angular Build
     runs-on: ubuntu-latest
