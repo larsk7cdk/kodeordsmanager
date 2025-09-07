@@ -6,29 +6,31 @@ on:
   pull_request:
     branches: [ "main" ]
 
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-
-
-
-
   build:
     name: Angular Build
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
+    defaults:
+      run:
+        working-directory: frontend
 
     steps:
       - name: Checkout the source code
-        uses: actions/checkout@v4
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v5
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22'
           cache: 'npm'
-          cache-dependency-path: package-lock.json
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
@@ -36,40 +38,66 @@ jobs:
 #      - name: Run tests
 #        run: npm run test
 
-      - name: Build
-        run: npm run build
+      - name: Build Angular
+        run: npm run build --output-path dist
 
-      - name: Archive artifact
-        uses: actions/upload-artifact@main
-        with:
-          name: dist
-          path: dist/kodeordsmanager.ui/browser
 
-  deploy:
-    name: Angular Deploy
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@main
-
-      - name: Download artifact
-        uses: actions/download-artifact@main
-        with:
-          name: dist
-          path: dist
-
-      - name: Deploy to host in test
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy Angular via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.ftp_host }}
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
-          port: 21
-          local-dir: dist/
-          server-dir: /kodeordsmanager.ui
-          dangerous-clean-slate: true
+          protocol: ftps
+          local-dir: frontend/dist/
+          server-dir: ${{ secrets.FTP_FRONTEND_DIR }}
+
+          # Sletter filer på serveren som ikke findes lokalt (valgfrit; brug med omtanke)
+          dangerous-clean-slate: false
+          
+          # Udeluk typiske unødvendige filer, hvis de skulle snige sig med
+          exclude: |
+            **/.vscode
+            **./idea
+            **/node_modules/**
+            **/.env
+            **/*.map
+
+
+      # - name: Build Angular
+      #   run: npm run build -- --configuration production --output-path dist
+
+      # - name: Archive artifact
+      #   uses: actions/upload-artifact@main
+      #   with:
+      #     name: dist
+      #     path: dist/kodeordsmanager.ui/browser
+
+  # deploy:
+  #   name: Angular Deploy
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@main
+
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@main
+  #       with:
+  #         name: dist
+  #         path: dist
+
+  #     - name: Deploy to host in test
+  #       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+  #       with:
+  #         server: ${{ secrets.ftp_host }}
+  #         username: ${{ secrets.ftp_user }}
+  #         password: ${{ secrets.ftp_password }}
+  #         port: 21
+  #         local-dir: dist/
+  #         server-dir: /kodeordsmanager.ui
+  #         dangerous-clean-slate: true
 
 
 
