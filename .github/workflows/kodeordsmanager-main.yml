@@ -50,10 +50,10 @@ jobs:
           password: ${{ secrets.ftp_password }}
           protocol: ftps
           local-dir: frontend/kodeordsmanager.ui/dist/
-          server-dir: ${{ secrets.FTP_FRONTEND_DIR }}
+          server-dir: /kodeordsmanager.ui
 
           # Sletter filer på serveren som ikke findes lokalt (valgfrit; brug med omtanke)
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           
           # Udeluk typiske unødvendige filer, hvis de skulle snige sig med
           exclude: |
