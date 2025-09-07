@@ -19,7 +19,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: frontend
+        working-directory: frontend/kodeordsmanager.ui
 
     steps:
       - name: Checkout the source code
@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.ftp_user }}
           password: ${{ secrets.ftp_password }}
           protocol: ftps
-          local-dir: frontend/dist/
+          local-dir: frontend/kodeordsmanager.ui/dist/
           server-dir: ${{ secrets.FTP_FRONTEND_DIR }}
 
           # Sletter filer på serveren som ikke findes lokalt (valgfrit; brug med omtanke)
