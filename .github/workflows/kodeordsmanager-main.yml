@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v5
-        
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -35,8 +35,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-#      - name: Run tests
-#        run: npm run test
+      #      - name: Run tests
+      #        run: npm run test
 
       - name: Build Angular
         run: npm run build
@@ -62,6 +62,45 @@ jobs:
             **/node_modules/**
             **/.env
             **/*.map
+
+build-and-deploy-backend:
+  name: Backend (.NET Web API)
+  runs-on: ubuntu-latest
+
+  defaults:
+    run:
+      working-directory: backend/kodeordsmanager
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.x.x'
+
+    - name: Restore
+      run: dotnet restore
+
+    - name: Publish (Release)
+      run: dotnet publish -c Release -o ./publish
+
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4
+      with:
+        server: ${{ secrets.ftp_host }}
+        username: ${{ secrets.ftp_user }}
+        password: ${{ secrets.ftp_password }}
+        protocol: ftps
+        local-dir: backend/kodeordsmanager/publish/
+        server-dir: /kodeordsmanager.api/
+        dangerous-clean-slate: true
+        exclude: |
+          **/.git*
+          **/obj/**
+          **/bin/**
+          **/appsettings.Development.json
 
 
       # - name: Build Angular
