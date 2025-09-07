@@ -43,7 +43,7 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: dist
-          path: dist/kodeordsmanager.ui/browser
+          path: frontend/kodeordsmanager.ui/dist/kodeordsmanager.ui/browser
 
   deploy:
     name: Angular Deploy
