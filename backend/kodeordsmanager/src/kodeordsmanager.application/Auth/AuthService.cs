@@ -9,17 +9,21 @@ namespace kodeordsmanager.application.Auth;
 
 public class AuthService(IOptions<JwtModel> jwt) : IAuthService
 {
+    private readonly List<KeyValuePair<string, string>> _users =
+    [
+        new("user@kodeordsmanager.dk", "Kodeord123!"),
+        new("lars@kodeordsmanager.dk", "Kodeord456!"),
+    ];
+
+
     public async Task<UserModel> Login(string email, string password)
     {
         var status = string.Empty;
         var jwtToken = string.Empty;
 
-        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
-        {
-            status = "Email or Password cannot be empty.";
-        }
+        var (key, value) = _users.FirstOrDefault(x => x.Key == email);
 
-        else if (email != "user@kodeordsmanager.dk" || password != "Kodeord123!")
+        if (email != key || password != value)
         {
             status = "Invalid Email or Password.";
         }
