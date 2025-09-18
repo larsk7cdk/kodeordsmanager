@@ -16,10 +16,10 @@ import {InputTextModule} from 'primeng/inputtext';
 })
 export class App {
   showLogin = true;       // Dialog vises i midten ved load
-  username = '';
+  email = '';
 
   login() {
     // TODO: kald din auth-service her
-    console.log('Logger ind som:', this.username);
+    console.log('Logger ind som:', this.email);
   }
 }

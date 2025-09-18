@@ -9,7 +9,21 @@
 /* Let styling af login-indholdet */
 .login-form {
   display: grid;
-  gap: 1rem;
+  //gap: 1rem;
+
+  .p-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    label {
+      margin-right: 1rem;
+    }
+
+    input {
+      flex: 1;
+    }
+  }
 }
 
 /* Gør dialogen lidt smallere på store skærme */

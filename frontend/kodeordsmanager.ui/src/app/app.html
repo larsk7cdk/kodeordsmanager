@@ -14,14 +14,14 @@
 >
   <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
     <div class="p-field">
-      <label for="username">Brugernavn</label>
+      <label for="email">Email</label>
       <input
         pInputText
-        id="username"
-        name="username"
-        [(ngModel)]="username"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
         required
-        autocomplete="username"
+        autocomplete="email"
       />
     </div>
 
