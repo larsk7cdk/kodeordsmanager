@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using kodeordsmanager.domain.Models;
 using Microsoft.Extensions.Options;
@@ -29,7 +30,8 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
         }
         else
         {
-            jwtToken = await CreateJwtToken(email);
+            // jwtToken = await CreateJwtToken(email);
+            jwtToken = GenerateTokenString(email);
         }
 
         return await Task.FromResult(new UserModel
@@ -41,7 +43,7 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
         });
     }
 
-    private async Task<string> CreateJwtToken(string email)
+    private string GenerateTokenString(string email)
     {
         var claims = new[]
         {
@@ -49,16 +51,51 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
             new Claim(JwtRegisteredClaimNames.Sub, email),
             new Claim(JwtRegisteredClaimNames.Email, email),
         };
-        var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Value.Key));
-        var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-        var jwtSecurityToken = new JwtSecurityToken(
+
+        RsaSecurityKey rsaSecurityKey = GetRsaKey();
+        SigningCredentials signingCredentials = new SigningCredentials(rsaSecurityKey, SecurityAlgorithms.RsaSha256);
+
+        JwtSecurityToken securityToken = new JwtSecurityToken(
             jwt.Value.Issuer,
             jwt.Value.Audience,
             claims,
             expires: DateTime.UtcNow.AddMinutes(jwt.Value.DurationInMinutes),
-            signingCredentials: signingCredentials);
+            signingCredentials: signingCredentials
+        );
 
-        var jwtSecurityTokenString = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-        return await Task.FromResult(jwtSecurityTokenString);
+        var tokenString = new JwtSecurityTokenHandler().WriteToken(securityToken);
+        return tokenString;
     }
+
+    private RsaSecurityKey GetRsaKey()
+    {
+        var rsaKey = RSA.Create();
+        var pemKey = File.ReadAllText(jwt.Value.PrivateKeyPath);
+        rsaKey.ImportFromPem(pemKey);
+
+        var rsaSecurityKey = new RsaSecurityKey(rsaKey);
+        return rsaSecurityKey;
+    }
+
+
+    // private async Task<string> CreateJwtToken(string email)
+    // {
+    //     var claims = new[]
+    //     {
+    //         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+    //         new Claim(JwtRegisteredClaimNames.Sub, email),
+    //         new Claim(JwtRegisteredClaimNames.Email, email),
+    //     };
+    //     var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Value.Key));
+    //     var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
+    //     var jwtSecurityToken = new JwtSecurityToken(
+    //         jwt.Value.Issuer,
+    //         jwt.Value.Audience,
+    //         claims,
+    //         expires: DateTime.UtcNow.AddMinutes(jwt.Value.DurationInMinutes),
+    //         signingCredentials: signingCredentials);
+    //
+    //     var jwtSecurityTokenString = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
+    //     return await Task.FromResult(jwtSecurityTokenString);
+    // }
 }

@@ -1,36 +1,39 @@
-<div class="app-container">
-  <!-- (valgfrit) Sideindhold kan ligge her inde i max-bredden -->
-</div>
+<router-outlet></router-outlet>
 
-<p-dialog
-  header="Login"
-  [(visible)]="showLogin"
-  [modal]="true"
-  [closable]="false"
-  [draggable]="false"
-  [resizable]="false"
-  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"
-  styleClass="login-dialog"
->
-  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">
-    <div class="p-field">
-      <label for="email">Email</label>
-      <input
-        pInputText
-        id="email"
-        name="email"
-        [(ngModel)]="email"
-        required
-        autocomplete="email"
-      />
-    </div>
 
-    <button
-      pButton
-      type="submit"
-      label="Log ind"
-      class="p-button-raised p-button-primary"
-      [disabled]="loginForm.invalid"
-    ></button>
-  </form>
-</p-dialog>
+<!--<div class="app-container">-->
+<!--  &lt;!&ndash; (valgfrit) Sideindhold kan ligge her inde i max-bredden &ndash;&gt;-->
+<!--</div>-->
+
+<!--<p-dialog-->
+<!--  header="Login"-->
+<!--  [(visible)]="showLogin"-->
+<!--  [modal]="true"-->
+<!--  [closable]="false"-->
+<!--  [draggable]="false"-->
+<!--  [resizable]="false"-->
+<!--  [breakpoints]="{ '960px': '90vw', '640px': '95vw' }"-->
+<!--  styleClass="login-dialog"-->
+<!--&gt;-->
+<!--  <form (ngSubmit)="login()" #loginForm="ngForm" class="login-form">-->
+<!--    <div class="p-field">-->
+<!--      <label for="email">Email</label>-->
+<!--      <input-->
+<!--        pInputText-->
+<!--        id="email"-->
+<!--        name="email"-->
+<!--        [(ngModel)]="email"-->
+<!--        required-->
+<!--        autocomplete="email"-->
+<!--      />-->
+<!--    </div>-->
+
+<!--    <button-->
+<!--      pButton-->
+<!--      type="submit"-->
+<!--      label="Log ind"-->
+<!--      class="p-button-raised p-button-primary"-->
+<!--      [disabled]="loginForm.invalid"-->
+<!--    ></button>-->
+<!--  </form>-->
+<!--</p-dialog>-->

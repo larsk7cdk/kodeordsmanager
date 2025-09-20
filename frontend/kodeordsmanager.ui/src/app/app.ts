@@ -4,22 +4,17 @@ import {FormsModule} from '@angular/forms';
 import {Dialog, DialogModule} from 'primeng/dialog';
 import {ButtonDirective, ButtonModule} from 'primeng/button';
 import {InputTextModule} from 'primeng/inputtext';
+import {Auth} from './core/auth/auth';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule,
-    DialogModule,
-    InputTextModule,
-    ButtonModule,],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
 export class App {
-  showLogin = true;       // Dialog vises i midten ved load
-  email = '';
 
-  login() {
-    // TODO: kald din auth-service her
-    console.log('Logger ind som:', this.email);
-  }
 }
