@@ -3,16 +3,13 @@
   <p-fieldset legend="Login">
     <div class="flex flex-col gap-2">
       <label for="username">Email</label>
-      <input pInputText id="email" aria-describedby="email-help" type="email" formControlName="email"/>
-      <small id="email-help">Indtast email.</small>
+      <input pInputText id="email" type="email" formControlName="email"/>
     </div>
 
     <div class="flex flex-col gap-2 mt-4">
       <label for="password">Kodeord</label>
-      <input pInputText id="password" aria-describedby="password-help" type="password" formControlName="password"/>
-      <small id="password-help">Indtast kodeord.</small>
+      <input pInputText id="password" type="password" formControlName="password"/>
     </div>
-
 
     <div class="flex flex-col gap-2 mt-4">
       <p-button label="Login" (click)="login()"></p-button>
