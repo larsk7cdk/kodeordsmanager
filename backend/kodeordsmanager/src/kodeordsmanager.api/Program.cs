@@ -1,8 +1,9 @@
 using System.Globalization;
 using System.Reflection;
-using System.Text;
+using System.Security.Cryptography;
 using kodeordsmanager.application;
 using kodeordsmanager.domain.Models;
+using kodeordsmanager.persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -12,9 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 var jwt = configuration.GetSection("Jwt").Get<JwtModel>()!;
 
+var cultureInfo = new CultureInfo("da-DK");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 // Add Application services to the container.
 builder.Services
-    .AddApplication(configuration);
+    .AddApplication(configuration)
+    .AddPersistance(configuration);
 
 // Add Authentication and Authorization
 builder.Services
@@ -26,6 +32,9 @@ builder.Services
     })
     .AddJwtBearer(options =>
     {
+        var rsaKey = RSA.Create();
+        rsaKey.ImportFromPem(File.ReadAllText(jwt.PrivateKeyPath));
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -33,7 +42,7 @@ builder.Services
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
 
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key)),
+            IssuerSigningKey = new RsaSecurityKey(rsaKey),
             ValidIssuer = jwt.Issuer,
             ValidAudience = jwt.Audience,
         };
@@ -82,9 +91,9 @@ app.UseAuthorization();
 
 app.UseCors(x =>
 {
-    x.AllowAnyMethod();
     x.AllowAnyHeader();
-    x.AllowAnyOrigin();
+    x.WithMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
+    x.WithOrigins("http://localhost:4200", "https://kodeordsmanager.dk");
 });
 
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });

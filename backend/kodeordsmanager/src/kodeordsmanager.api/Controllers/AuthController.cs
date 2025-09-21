@@ -1,5 +1,5 @@
-using kodeordsmanager.api.DTOs;
 using kodeordsmanager.application.Auth;
+using kodeordsmanager.contracts.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kodeordsmanager.api.Controllers
@@ -15,20 +15,21 @@ namespace kodeordsmanager.api.Controllers
         ///     Kontroller om brugeren kan logge ind og returner et JWT token hvis det er tilfældet
         /// </summary>
         [HttpPost, Route("login")]
-        public async Task<IActionResult> Login([FromBody] UserDTO request)
+        public async Task<IActionResult> LoginAsync([FromBody] UserLoginDTO request)
         {
             if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             {
                 return BadRequest("Email or Password cannot be empty.");
             }
 
-            var user = await authService.Login(request.Email, request.Password);
+            var user = await authService.LoginAsync(request.Email, request.Password);
 
             if (!user.IsAuthenticated)
                 return Unauthorized(user.Status);
 
-            return Ok(new AuthDTO
+            return Ok(new UserAuthDTO
             {
+                Email = user.Email,
                 Token = user.JwtToken,
                 ExpiresIn = user.ExpiresIn
             });

@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.infrastruct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.persistence", "src\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj", "{7B16E91B-FE5A-483E-89F2-F7070CC99765}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kodeordsmanager.contracts", "src\kodeordsmanager.contracts\kodeordsmanager.contracts.csproj", "{B9610880-7A48-4036-925F-5F81A96EEDA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B16E91B-FE5A-483E-89F2-F7070CC99765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9610880-7A48-4036-925F-5F81A96EEDA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9610880-7A48-4036-925F-5F81A96EEDA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9610880-7A48-4036-925F-5F81A96EEDA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9610880-7A48-4036-925F-5F81A96EEDA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EF9CCDA8-BAC9-4BE7-9DE8-BCB248737B1C} = {8D4563C7-D0AC-4D59-82D9-0571586CA83F}
@@ -56,5 +62,6 @@ Global
 		{4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0} = {8D4563C7-D0AC-4D59-82D9-0571586CA83F}
 		{41C5401A-8C54-4387-BEE8-6FB3A4495341} = {4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0}
 		{7B16E91B-FE5A-483E-89F2-F7070CC99765} = {4FA67A3C-F857-42E3-B4C8-F42C8B4E5EE0}
+		{B9610880-7A48-4036-925F-5F81A96EEDA3} = {842C1EFC-1A2C-4792-9302-660116127BEF}
 	EndGlobalSection
 EndGlobal

@@ -23,14 +23,9 @@ export class AuthService {
       );
   }
 
-  private setSession(authResult: AuthResult) {
-    const expiresAt = moment().add(authResult.expiresIn, 'second');
-
-    localStorage.setItem('token', authResult.token);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
-  }
 
   logout() {
+    localStorage.removeItem("email");
     localStorage.removeItem("token");
     localStorage.removeItem("expires_at");
 
@@ -49,5 +44,17 @@ export class AuthService {
     const expiration = localStorage.getItem("expires_at");
     const expiresAt = JSON.parse(expiration!);
     return moment(expiresAt);
+  }
+
+  getEmail(): string {
+    return localStorage.getItem('email') ?? '';
+  }
+
+  private setSession(authResult: AuthResult) {
+    const expiresAt = moment().add(authResult.expiresIn, 'second');
+
+    localStorage.setItem('email', authResult.email);
+    localStorage.setItem('token', authResult.token);
+    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
 }

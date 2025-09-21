@@ -1,4 +1,4 @@
-import {Component, signal} from '@angular/core';
+import {Component} from '@angular/core';
 import {Header} from './shared/components/header/header';
 import {RouterOutlet} from '@angular/router';
 
