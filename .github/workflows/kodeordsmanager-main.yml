@@ -95,7 +95,7 @@ jobs:
           protocol: ftps
           local-dir: backend/kodeordsmanager/publish/
           server-dir: /kodeordsmanager.api/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/obj/**
