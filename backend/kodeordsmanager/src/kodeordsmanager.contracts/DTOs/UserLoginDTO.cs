@@ -1,9 +1,9 @@
-﻿namespace kodeordsmanager.api.DTOs;
+﻿namespace kodeordsmanager.contracts.DTOs;
 
 /// <summary>
-///     Bruger oplysninger
+///     Brugers oplysninger for login
 /// </summary>
-public class UserDTO
+public class UserLoginDTO
 {
     /// <summary>
     ///     Bruger Email

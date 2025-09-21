@@ -32,6 +32,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\kodeordsmanager.application\kodeordsmanager.application.csproj"/>
+        <ProjectReference Include="..\kodeordsmanager.contracts\kodeordsmanager.contracts.csproj" />
         <ProjectReference Include="..\kodeordsmanager.domain\kodeordsmanager.domain.csproj"/>
         <ProjectReference Include="..\kodeordsmanager.infrastructure\kodeordsmanager.infrastructure.csproj"/>
         <ProjectReference Include="..\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj"/>

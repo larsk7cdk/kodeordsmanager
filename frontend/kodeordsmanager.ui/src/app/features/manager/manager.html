@@ -1,4 +1,11 @@
 <h1>Manager</h1>
 
+<p>Hent applikationer ved at klikke på .</p>
 
-<p>Welcome to the Manager section of the application. Here you can manage various aspects of the system.</p>
+<p-button (click)="fetchData()">Hent applikationer</p-button>
+
+<div>
+  @if (data$ | async; as s) {
+    <pre>{{ s | json }}</pre>
+  }
+</div>

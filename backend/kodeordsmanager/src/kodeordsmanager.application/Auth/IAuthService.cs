@@ -4,5 +4,5 @@ namespace kodeordsmanager.application.Auth;
 
 public interface IAuthService
 {
-    Task<UserModel> Login(string email, string password);
+    Task<UserIdentityModel> LoginAsync(string email, string password);
 }
