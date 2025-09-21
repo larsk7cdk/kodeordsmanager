@@ -1,21 +1,61 @@
 <h1>Login</h1>
 
+
+
+
 <form [formGroup]="form">
-  <fieldset>
-    <legend>Login</legend>
-    <div class="form-field">
-      <label>Email:</label>
-      <input name="email" formControlName="email">
-    </div>
-    <div class="form-field">
-      <label>Password:</label>
-      <input name="password" formControlName="password"
-             type="password">
-    </div>
-  </fieldset>
-  <div class="form-buttons">
-    <button class="button button-primary"
-            (click)="login()">Login
-    </button>
-  </div>
+
+<!--  <p-fieldset legend="Login">-->
+<!--    <div class="flex flex-col gap-2">-->
+<!--      <label for="username">Username</label>-->
+<!--      <input pInputText id="username" aria-describedby="username-help" />-->
+<!--      <small id="username-help">Enter your username to reset your password.</small>-->
+<!--    </div>-->
+<!--  </p-fieldset>-->
+
+
+<!--  <p-panel header="Login" >-->
+
+<!--    <div class="card flex justify-center">-->
+<!--      <div class="flex flex-col gap-2">-->
+<!--        <label for="username">Username</label>-->
+<!--        <input pInputText id="username" aria-describedby="username-help"  />-->
+<!--        <small id="username-help">Enter your username to reset your password.</small>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+
+
+
+<!--    <ng-container *ngIf="(authFacade.authIsEmailFailed$ | async) || (authFacade.authIsPasswordFailed$ | async)">-->
+<!--      <div class="error-messages">-->
+<!--&lt;!&ndash;        <p-message severity="error" text="Login failed. Please check your email and password."></p-message>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p-message *ngIf="authFacade.authIsEmailFailed$ | async" severity="error" text="Email is not registered."></p-message>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p-message *ngIf="authFacade.authIsPasswordFailed$ | async" severity="error" text="Incorrect password."></p-message>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </ng-container>-->
+
+<!--  </p-panel>-->
+
+
+
+<!--  <fieldset>-->
+<!--    <legend>Login</legend>-->
+<!--    <div class="form-field">-->
+<!--      <label>Email:</label>-->
+<!--      <input name="email" formControlName="email">-->
+<!--    </div>-->
+<!--    <div class="form-field">-->
+<!--      <label>Password:</label>-->
+<!--      <input name="password" formControlName="password"-->
+<!--             type="password">-->
+<!--    </div>-->
+<!--  </fieldset>-->
+<!--  <div class="form-buttons">-->
+<!--    <p-button class="button button-primary"-->
+<!--            (click)="login()">Login-->
+<!--    </p-button>-->
+<!--  </div>-->
 </form>

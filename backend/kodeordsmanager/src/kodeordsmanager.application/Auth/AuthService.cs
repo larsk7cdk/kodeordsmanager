@@ -30,7 +30,6 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
         }
         else
         {
-            // jwtToken = await CreateJwtToken(email);
             jwtToken = GenerateTokenString(email);
         }
 
@@ -39,7 +38,7 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
             Email = email,
             IsAuthenticated = !string.IsNullOrEmpty(jwtToken),
             JwtToken = jwtToken,
-            ExpiresIn = jwt.Value.DurationInMinutes * 60,
+            ExpiresIn = jwt.Value.DurationInMinutes * 60, // convert minutes to seconds
             Status = string.IsNullOrEmpty(status) ? "Success" : status
         });
     }

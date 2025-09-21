@@ -1,1 +1,13 @@
-<h1>Kodeords Manager</h1>
+
+<header>
+  <h1>Kodeords Manager</h1>
+
+  @if (authService.isLoggedIn()) {
+    <button (click)="authService.logout()">Logout</button>
+  } @else {
+    <p-button (click)="router.navigateByUrl('/login')">Login</p-button>
+  }
+
+
+</header>
+

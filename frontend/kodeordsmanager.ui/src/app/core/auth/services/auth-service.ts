@@ -1,16 +1,17 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {shareReplay, tap} from 'rxjs';
 import moment from 'moment';
 import {AuthResult} from '../nodels/authResult';
 import {environment} from '../../../../environments/environment';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {
-  }
+  private http: HttpClient = inject(HttpClient);
+  private router = inject(Router);
 
   login(email: string, password: string) {
     return this.http.post<AuthResult>(environment.apiBaseUrl + '/auth/login', {email, password})
@@ -32,6 +33,8 @@ export class AuthService {
   logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("expires_at");
+
+    this.router.navigate(['']);
   }
 
   public isLoggedIn() {

@@ -2,11 +2,21 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth-service';
 import {Router} from '@angular/router';
+import {ButtonModule} from 'primeng/button';
+import {PanelModule} from 'primeng/panel';
+import {InputTextModule} from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { FieldsetModule } from 'primeng/fieldset';
 
 @Component({
   selector: 'app-login',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ButtonModule,
+    PanelModule,
+    InputTextModule,
+    FloatLabelModule,
+    FieldsetModule
   ],
   templateUrl: './login.html',
   styleUrl: './login.scss'
@@ -37,7 +47,7 @@ class Login {
       this.authService.login(values.email, values.password)
         .subscribe(
           () => {
-            this.router.navigateByUrl('/');
+            this.router.navigateByUrl('/manager');
           }
         );
     }

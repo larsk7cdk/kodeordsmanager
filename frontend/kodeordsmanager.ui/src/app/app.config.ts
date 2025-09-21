@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
 
     // PrimeNG
-    provideAnimationsAsync(),   // Only required if animations are needed.
+    provideAnimationsAsync(),
     providePrimeNG({
       theme: {
         preset: Material
