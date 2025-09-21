@@ -5,23 +5,36 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <NoWarn>1701;1702;ASP0014;1591;</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <NoWarn>1701;1702;ASP00141591;</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.4"/>
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\.dockerignore">
-        <Link>.dockerignore</Link>
-      </Content>
+        <Content Include="..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\kodeordsmanager.application\kodeordsmanager.application.csproj" />
-      <ProjectReference Include="..\kodeordsmanager.domain\kodeordsmanager.domain.csproj" />
-      <ProjectReference Include="..\kodeordsmanager.infrastructure\kodeordsmanager.infrastructure.csproj" />
-      <ProjectReference Include="..\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj" />
+        <ProjectReference Include="..\kodeordsmanager.application\kodeordsmanager.application.csproj"/>
+        <ProjectReference Include="..\kodeordsmanager.domain\kodeordsmanager.domain.csproj"/>
+        <ProjectReference Include="..\kodeordsmanager.infrastructure\kodeordsmanager.infrastructure.csproj"/>
+        <ProjectReference Include="..\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj"/>
     </ItemGroup>
 
 </Project>

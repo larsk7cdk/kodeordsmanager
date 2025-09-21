@@ -1,19 +1,9 @@
-/* Maks bredde på selve siden */
-.app-container {
-  max-width: 1014px;
-  margin: 0 auto;
-  padding: 16px;
-  min-height: 100vh;
+main {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  max-width: 1024px;
+  margin: auto;
 }
 
-/* Let styling af login-indholdet */
-.login-form {
-  display: grid;
-  gap: 1rem;
-}
 
-/* Gør dialogen lidt smallere på store skærme */
-:host ::ng-deep .login-dialog {
-  width: 420px;
-  max-width: 90vw;
-}

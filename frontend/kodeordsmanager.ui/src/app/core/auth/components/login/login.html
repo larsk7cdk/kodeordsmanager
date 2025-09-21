@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+
+  <p-fieldset legend="Login">
+    <div class="flex flex-col gap-2">
+      <label for="username">Email</label>
+      <input pInputText id="email" type="email" formControlName="email"/>
+    </div>
+
+    <div class="flex flex-col gap-2 mt-4">
+      <label for="password">Kodeord</label>
+      <input pInputText id="password" type="password" formControlName="password"/>
+    </div>
+
+    <div class="flex flex-col gap-2 mt-4">
+      <p-button label="Login" (click)="login()"></p-button>
+    </div>
+  </p-fieldset>
+</form>

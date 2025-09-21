@@ -1,0 +1,10 @@
+<header>
+  <h1>Kodeords Manager</h1>
+
+  @if (authService.isLoggedIn()) {
+    <p-button (click)="authService.logout()">Logout</p-button>
+  } @else {
+    <p-button (click)="router.navigateByUrl('/login')">Login</p-button>
+  }
+</header>
+
