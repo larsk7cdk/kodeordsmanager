@@ -80,7 +80,12 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseCors();
+app.UseCors(x =>
+{
+    x.AllowAnyMethod();
+    x.AllowAnyHeader();
+    x.AllowAnyOrigin();
+});
 
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 

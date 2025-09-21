@@ -39,6 +39,7 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
             Email = email,
             IsAuthenticated = !string.IsNullOrEmpty(jwtToken),
             JwtToken = jwtToken,
+            ExpiresIn = jwt.Value.DurationInMinutes * 60,
             Status = string.IsNullOrEmpty(status) ? "Success" : status
         });
     }
@@ -76,26 +77,4 @@ public class AuthService(IOptions<JwtModel> jwt) : IAuthService
         var rsaSecurityKey = new RsaSecurityKey(rsaKey);
         return rsaSecurityKey;
     }
-
-
-    // private async Task<string> CreateJwtToken(string email)
-    // {
-    //     var claims = new[]
-    //     {
-    //         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-    //         new Claim(JwtRegisteredClaimNames.Sub, email),
-    //         new Claim(JwtRegisteredClaimNames.Email, email),
-    //     };
-    //     var symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Value.Key));
-    //     var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
-    //     var jwtSecurityToken = new JwtSecurityToken(
-    //         jwt.Value.Issuer,
-    //         jwt.Value.Audience,
-    //         claims,
-    //         expires: DateTime.UtcNow.AddMinutes(jwt.Value.DurationInMinutes),
-    //         signingCredentials: signingCredentials);
-    //
-    //     var jwtSecurityTokenString = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
-    //     return await Task.FromResult(jwtSecurityTokenString);
-    // }
 }

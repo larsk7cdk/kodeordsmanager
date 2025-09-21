@@ -27,7 +27,11 @@ namespace kodeordsmanager.api.Controllers
             if (!user.IsAuthenticated)
                 return Unauthorized(user.Status);
 
-            return Ok(user.JwtToken);
+            return Ok(new AuthDTO
+            {
+                Token = user.JwtToken,
+                ExpiresIn = user.ExpiresIn
+            });
         }
     }
 }
