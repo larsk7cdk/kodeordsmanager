@@ -5,8 +5,8 @@ import {Router} from '@angular/router';
 import {ButtonModule} from 'primeng/button';
 import {PanelModule} from 'primeng/panel';
 import {InputTextModule} from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { FieldsetModule } from 'primeng/fieldset';
+import {FloatLabelModule} from 'primeng/floatlabel';
+import {FieldsetModule} from 'primeng/fieldset';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +19,10 @@ import { FieldsetModule } from 'primeng/fieldset';
     FieldsetModule
   ],
   templateUrl: './login.html',
-  styleUrl: './login.scss'
+  styleUrl: './login.scss',
+  standalone: true
 })
-class Login {
+export class Login {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
@@ -30,15 +31,6 @@ class Login {
     email: ['', Validators.required],
     password: ['', Validators.required]
   });
-
-  // constructor(private fb: FormBuilder,
-  //             private authService: AuthService,
-  //             private router: Router) {
-  //   this.form = this.fb.group({
-  //     email: ['', Validators.required],
-  //     password: ['', Validators.required]
-  //   });
-  // }
 
   login() {
     const values = this.form.value;
@@ -53,5 +45,3 @@ class Login {
     }
   }
 }
-
-export default Login

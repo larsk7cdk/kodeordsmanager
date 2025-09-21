@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
 import {Manager} from './features/manager/manager';
 import {authGuard} from './core/auth/guards/auth-guard';
-import Login from './core/auth/components/login/login';
 import {Home} from './features/home/home';
+import {Login} from './core/auth/components/login/login';
 
 export const routes: Routes = [
   {
