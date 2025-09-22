@@ -38,4 +38,8 @@
         <ProjectReference Include="..\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Properties\PublishProfiles\" />
+    </ItemGroup>
+
 </Project>
