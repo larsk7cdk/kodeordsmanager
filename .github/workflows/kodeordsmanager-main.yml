@@ -53,7 +53,7 @@ jobs:
           server-dir: /kodeordsmanager.ui/
 
           # Sletter filer på serveren som ikke findes lokalt (valgfrit; brug med omtanke)
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           
           # Udeluk typiske unødvendige filer, hvis de skulle snige sig med
           exclude: |
