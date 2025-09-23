@@ -7,6 +7,7 @@ using kodeordsmanager.persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,12 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 builder.Services
     .AddApplication(configuration)
     .AddPersistance(configuration);
+
+// Add Logging
+builder.Logging.AddSerilog(new LoggerConfiguration()
+    .WriteTo.Console()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger());
 
 // Add Authentication and Authorization
 builder.Services
@@ -77,7 +84,6 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -93,9 +99,20 @@ app.UseCors(x =>
 {
     x.AllowAnyHeader();
     x.WithMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
-    x.WithOrigins("http://localhost:4200", "https://kodeordsmanager.dk");
+    x.WithOrigins("http://localhost:4200", "https://kodeordsmanager.k7c.dk");
 });
 
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
-app.Run();
+try
+{
+    app.Run();
+}
+catch (Exception e)
+{
+    Log.Error("Application error: {Message}", e.Message);
+}
+finally
+{
+    Log.CloseAndFlush();
+}

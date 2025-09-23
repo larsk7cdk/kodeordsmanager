@@ -14,12 +14,15 @@ export class AuthService {
   private router = inject(Router);
 
   login(email: string, password: string) {
-    return this.http.post<AuthResult>(environment.apiBaseUrl + '/auth/login', {email, password})
+    return this.http.post<AuthResult>(environment.apiBaseUrl + '/auth/login', {
+      email,
+      password
+    }, {withCredentials: true})
       .pipe(
         tap((authResult: AuthResult) => {
           this.setSession(authResult)
         }),
-        shareReplay()
+        shareReplay(),
       );
   }
 

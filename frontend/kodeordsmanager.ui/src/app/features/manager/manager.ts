@@ -27,6 +27,6 @@ export class Manager {
   fetchData() {
     const email = this.authService.getEmail();
 
-    this.data$ = this.http.post<ManagerResult>(environment.apiBaseUrl + '/manager/GetAll', {email});
+    this.data$ = this.http.post<ManagerResult>(environment.apiBaseUrl + '/manager/GetAll', {email}, {withCredentials: true});
   }
 }
