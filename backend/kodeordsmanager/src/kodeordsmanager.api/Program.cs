@@ -11,9 +11,11 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load and bind configuration
 var configuration = builder.Configuration;
 var jwt = configuration.GetSection("Jwt").Get<JwtModel>()!;
 
+// Set Danish culture globally
 var cultureInfo = new CultureInfo("da-DK");
 CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
@@ -88,22 +90,29 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// redirect HTTP requests to HTTPS
 app.UseHttpsRedirection();
 
+// Enable routing, needed when using controllers 
 app.UseRouting();
 
+// Enable authentication and authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
+// CORS configuration
 app.UseCors(x =>
 {
     x.AllowAnyHeader();
     x.WithMethods("OPTIONS", "GET", "POST", "PUT", "DELETE");
     x.WithOrigins("http://localhost:4200", "https://kodeordsmanager.k7c.dk");
+    x.AllowCredentials();
 });
 
+// Use controllers as endpoints
 app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
+// Run the application
 try
 {
     app.Run();
