@@ -1,6 +1,6 @@
 using kodeordsmanager.domain.Models;
 
-namespace kodeordsmanager.application.Auth;
+namespace kodeordsmanager.application.Contracts.Interfaces.Auth;
 
 public interface IAuthService
 {

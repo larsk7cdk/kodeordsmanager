@@ -1,19 +1,16 @@
-using kodeordsmanager.application.Interfaces;
-using kodeordsmanager.contracts.Entities;
+using kodeordsmanager.application.Contracts.Interfaces.Persistence;
+using kodeordsmanager.domain.Entities;
+using kodeordsmanager.persistence.DatabaseContext;
+using kodeordsmanager.persistence.Repositories.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace kodeordsmanager.persistence.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository(AppDatabaseContext context)
+    : GenericRepository<UserEntity>(context), IUserRepository
 {
-    private readonly List<UserEntity> _userEntities =
-    [
-        new() { Id = 1, Email = "user@kodeordsmanager.dk", Password = "Kodeord123!" },
-        new() { Id = 2, Email = "lars@kodeordsmanager.dk", Password = "Kodeord456!" }
-    ];
+    private readonly AppDatabaseContext _context = context;
 
-    public async Task<UserEntity> GetByEmailAsync(string email)
-    {
-        var user = _userEntities.FirstOrDefault(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
-        return await Task.FromResult(user) ?? new UserEntity { Id = 0, Email = string.Empty, Password = string.Empty };
-    }
+    public async Task<UserEntity?> GetByEmailAsync(string email) =>
+        await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
 }

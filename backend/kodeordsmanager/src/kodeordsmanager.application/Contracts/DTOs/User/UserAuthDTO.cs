@@ -1,4 +1,4 @@
-﻿namespace kodeordsmanager.contracts.DTOs;
+﻿namespace kodeordsmanager.application.Contracts.DTOs.User;
 
 /// <summary>
 /// Oplysninger om bruger autentifikation

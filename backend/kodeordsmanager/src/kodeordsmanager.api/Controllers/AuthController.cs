@@ -1,5 +1,5 @@
-using kodeordsmanager.application.Auth;
-using kodeordsmanager.contracts.DTOs;
+using kodeordsmanager.application.Contracts.DTOs.User;
+using kodeordsmanager.application.Contracts.Interfaces.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kodeordsmanager.api.Controllers

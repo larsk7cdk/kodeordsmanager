@@ -1,14 +1,16 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
-using kodeordsmanager.application.Interfaces;
+using kodeordsmanager.application.Contracts.Interfaces.Auth;
+using kodeordsmanager.application.Contracts.Interfaces.Persistence;
 using kodeordsmanager.domain.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
 namespace kodeordsmanager.application.Auth;
 
-public class AuthService(IOptions<JwtModel> jwt, IUserRepository userRepository) : IAuthService
+public class AuthService(IOptions<JwtModel> jwt, IUserRepository userRepository)
+    : IAuthService
 {
     public async Task<UserIdentityModel> LoginAsync(string email, string password)
     {
@@ -16,8 +18,8 @@ public class AuthService(IOptions<JwtModel> jwt, IUserRepository userRepository)
         var jwtToken = string.Empty;
 
         var user = await userRepository.GetByEmailAsync(email);
-        
-        if (email != user.Email || password != user.Password)
+
+        if (user is null || email != user.Email || password != user.Password)
         {
             status = "Invalid Email or Password.";
         }

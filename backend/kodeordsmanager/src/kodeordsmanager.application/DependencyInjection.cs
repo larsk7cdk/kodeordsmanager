@@ -1,6 +1,4 @@
-﻿using kodeordsmanager.application.Auth;
-using kodeordsmanager.application.Manager;
-using kodeordsmanager.domain.Models;
+﻿using kodeordsmanager.domain.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,8 +12,6 @@ public static class DependencyInjection
         services.Configure<JwtModel>(configuration.GetSection("Jwt"));
 
         // Service registrations
-        services.AddScoped<IAuthService, AuthService>();
-        services.AddScoped<IManagerService, ManagerService>();
 
         return services;
     }

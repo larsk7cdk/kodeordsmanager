@@ -28,6 +28,10 @@
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="9.0.4"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.4"/>
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
@@ -41,7 +45,6 @@
 
     <ItemGroup>
         <ProjectReference Include="..\kodeordsmanager.application\kodeordsmanager.application.csproj"/>
-        <ProjectReference Include="..\kodeordsmanager.contracts\kodeordsmanager.contracts.csproj" />
         <ProjectReference Include="..\kodeordsmanager.domain\kodeordsmanager.domain.csproj"/>
         <ProjectReference Include="..\kodeordsmanager.infrastructure\kodeordsmanager.infrastructure.csproj"/>
         <ProjectReference Include="..\kodeordsmanager.persistence\kodeordsmanager.persistence.csproj"/>

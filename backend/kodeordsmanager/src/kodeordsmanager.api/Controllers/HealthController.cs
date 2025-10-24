@@ -1,5 +1,3 @@
-using kodeordsmanager.application.Manager;
-using kodeordsmanager.contracts.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

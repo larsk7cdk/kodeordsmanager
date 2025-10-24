@@ -1,4 +1,4 @@
-﻿namespace kodeordsmanager.contracts.Entities;
+﻿namespace kodeordsmanager.domain.Entities;
 
 public class ManagerApplicationEntity
 {
